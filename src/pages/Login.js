@@ -1,5 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import fetchToken from '../services/api';
 
 class Login extends React.Component {
@@ -68,6 +69,9 @@ class Login extends React.Component {
           >
             Play
           </button>
+          <Link to="/settings">
+            <button type="button" data-testid="btn-settings">Settings</button>
+          </Link>
         </section>
       </div>
     );
