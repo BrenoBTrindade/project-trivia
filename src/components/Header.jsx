@@ -16,7 +16,7 @@ class Header extends Component {
       <div>
         <header>
           <span data-testid="header-player-name">{ name }</span>
-          <span>{ score }</span>
+          <span data-testid="header-score">{ score }</span>
           <img
             src={ `https://www.gravatar.com/avatar/${this.hashConverter()}` }
             alt="Player avatar"
