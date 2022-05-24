@@ -49,7 +49,13 @@ class Login extends React.Component {
               onChange={ this.handleChange }
             />
           </label>
-          <button type="button" disabled={ disabled }>Play</button>
+          <button
+            type="button"
+            disabled={ disabled }
+            data-testid="btn-play"
+          >
+            Play
+          </button>
         </section>
       </div>
     );
