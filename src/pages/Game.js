@@ -11,6 +11,7 @@ class Game extends React.Component {
       questions: [],
       questionsIndex: 1,
       loading: true,
+      shuffleAnswers: [],
     };
   }
 
@@ -21,6 +22,7 @@ class Game extends React.Component {
       this.setState({ loading: false });
     });
     this.tokenValidation();
+    this.shuffleArray();
   }
 
   tokenValidation = () => {
@@ -37,11 +39,13 @@ shuffleArray = () => {
   const { questions, questionsIndex } = this.state;
   const answers = [questions[questionsIndex].correct_answer,
     ...questions[questionsIndex].incorrect_answers];
-  console.log(answers);
+  const n = 0.5;
+  answers.sort(() => Math.random() - n);
+  this.setState({ shuffleAnswers: answers });
 }
 
 render() {
-  const { questions, questionsIndex, loading } = this.state;
+  const { questions, questionsIndex, loading, shuffleAnswers } = this.state;
   return (
     <div>
       <h1>Game</h1>
@@ -59,8 +63,36 @@ render() {
           >
             { questions[questionsIndex].question }
           </p>
-          <div>
-            { this.shuffleArray() }
+          <div data-testid="answer-options">
+            {
+              shuffleAnswers.map((answer, index) => {
+                const correctAnswer = questions[questionsIndex].correct_answer;
+                console.log(correctAnswer);
+                if (answer === correctAnswer) {
+                  return (
+                    <button
+                      type="button"
+                      data-testeid="correct-answer"
+                      key={ index }
+                    >
+                      { answer }
+                    </button>
+                  );
+                }
+                if (index !== 0 && answer !== correctAnswer) {
+                  return (
+                    <button
+                      type="button"
+                      data-testid={ `wrong-answer-${index - 1}` }
+                      key={ index }
+                    >
+                      { answer }
+                    </button>
+                  );
+                }
+                return null;
+              })
+            }
           </div>
         </div>
       )}
