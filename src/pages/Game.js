@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { fetchQuestions } from '../services/api';
 import { savePlayerEmail, savePlayerName } from '../redux/actions';
+import AnswerButtons from '../components/AnswerButtons/AnswerButtons';
 
 class Game extends React.Component {
   constructor() {
@@ -14,6 +15,7 @@ class Game extends React.Component {
       questionsIndex: 0,
       loading: true,
       shuffleAnswers: [],
+      // showAnswers: false,
     };
   }
 
@@ -49,57 +51,31 @@ shuffleArray = () => {
   this.setState({ shuffleAnswers: answers });
 }
 
+// showBorders = () => {
+//   this.setState({ showAnswers: true });
+// }
+
 render() {
-  const { questions, questionsIndex, loading, shuffleAnswers } = this.state;
+  const {
+    questions,
+    questionsIndex,
+    loading,
+    shuffleAnswers,
+    // showAnswers,
+  } = this.state;
   return (
     <div>
       <h1>Game</h1>
       <Header />
       {loading && <h2>Loading...</h2>}
       {!loading && (
-        <div>
-          <p
-            data-testid="question-category"
-          >
-            { questions[questionsIndex].category }
-          </p>
-          <p
-            data-testid="question-text"
-          >
-            { questions[questionsIndex].question }
-          </p>
-          <div data-testid="answer-options">
-            {
-              shuffleAnswers.map((answer, index) => {
-                const correctAnswer = questions[questionsIndex].correct_answer;
-                console.log(correctAnswer);
-                if (answer === correctAnswer) {
-                  return (
-                    <button
-                      type="button"
-                      data-testid="correct-answer"
-                      key={ index }
-                    >
-                      { answer }
-                    </button>
-                  );
-                }
-                if (answer !== correctAnswer) {
-                  return (
-                    <button
-                      type="button"
-                      data-testid={ `wrong-answer-${index - 1}` }
-                      key={ index }
-                    >
-                      { answer }
-                    </button>
-                  );
-                }
-                return null;
-              })
-            }
-          </div>
-        </div>
+        <AnswerButtons
+          questions={ questions }
+          questionsIndex={ questionsIndex }
+          shuffleAnswers={ shuffleAnswers }
+          // showAnswers={ showAnswers }
+          // showBorders={ this.showBorders }
+        />
       )}
     </div>
   );
