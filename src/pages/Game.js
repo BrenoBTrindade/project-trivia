@@ -1,7 +1,9 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { fetchQuestions } from '../services/api';
+import { savePlayerEmail, savePlayerName } from '../redux/actions';
 
 class Game extends React.Component {
   constructor() {
@@ -9,7 +11,7 @@ class Game extends React.Component {
     this.state = {
       responseCode: 0,
       questions: [],
-      questionsIndex: 1,
+      questionsIndex: 0,
       loading: true,
       shuffleAnswers: [],
     };
@@ -20,18 +22,21 @@ class Game extends React.Component {
     const data = await fetchQuestions(token);
     this.setState({ questions: data.results, responseCode: data.response_code }, () => {
       this.setState({ loading: false });
+      this.tokenValidation();
     });
-    this.tokenValidation();
+
     this.shuffleArray();
   }
 
   tokenValidation = () => {
     const { responseCode } = this.state;
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
     const three = 3;
     if (responseCode === three) {
       localStorage.removeItem('token');
       history.push('/');
+      dispatch(savePlayerEmail(''));
+      dispatch(savePlayerName(''));
     }
   };
 
@@ -72,14 +77,14 @@ render() {
                   return (
                     <button
                       type="button"
-                      data-testeid="correct-answer"
+                      data-testid="correct-answer"
                       key={ index }
                     >
                       { answer }
                     </button>
                   );
                 }
-                if (index !== 0 && answer !== correctAnswer) {
+                if (answer !== correctAnswer) {
                   return (
                     <button
                       type="button"
@@ -105,6 +110,7 @@ Game.propTypes = {
   history: propTypes.shape({
     push: propTypes.func.isRequired,
   }).isRequired,
+  dispatch: propTypes.func.isRequired,
 };
 
-export default Game;
+export default connect()(Game);
