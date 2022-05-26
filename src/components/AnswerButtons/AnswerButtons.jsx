@@ -6,14 +6,43 @@ import './AnswerButtons.css';
 import { updateScore } from '../../redux/actions';
 
 class AnswerButtons extends Component {
-  showBorders = () => {
-    const wrongButtons = document.getElementsByClassName('wrong');
-    const rightButton = document.getElementsByClassName('right');
-    rightButton[0].classList.toggle('green');
-    for (let i = 0; i < wrongButtons.length; i += 1) {
-      wrongButtons[i].classList.toggle('red');
-    }
+  constructor() {
+    super();
+    this.state = {
+      answered: false,
+      right: 'right',
+      wrong: 'wrong',
+    };
   }
+
+  // componentDidMount() {
+  //   this.setState({
+  //     right: 'right',
+  //     wrong: 'wrong',
+  //   });
+  // }
+
+  showBorders = () => {
+    // const wrongButtons = document.querySelectorAll('#wrong');
+    // const rightButton = document.querySelector('#right');
+    // rightButton.classList.toggle('green');
+    // for (let i = 0; i < wrongButtons.length; i += 1) {
+    //   wrongButtons[i].classList.toggle('red');
+    // }
+    this.setState({
+      right: 'green',
+      wrong: 'red',
+    });
+  }
+
+  // hiddenBorders = () => {
+  //   const wrongButtons = document.getElementsByClassName('wrong');
+  //   const rightButton = document.getElementsByClassName('right');
+  //   rightButton[0].classList.remove('green');
+  //   for (let i = 0; i < wrongButtons.length; i += 1) {
+  //     wrongButtons[i].classList.remove('red');
+  //   }
+  // };
 
   rigthAnswer = (target) => {
     const { timer, score, questions, questionsIndex, dispatch } = this.props;
@@ -26,7 +55,7 @@ class AnswerButtons extends Component {
       hard: 3,
     };
 
-    if (target.id === 'rigth') {
+    if (target.id === 'right') {
       const calcScore = ten + (timer * difficultyScore[difficulty]) + score;
       console.log(calcScore);
       dispatch(updateScore(calcScore));
@@ -36,8 +65,23 @@ class AnswerButtons extends Component {
   }
 
   handleClick = ({ target }) => {
+    this.setState({
+      answered: true,
+    });
     this.showBorders();
     this.rigthAnswer(target);
+  }
+
+  handleNext = () => {
+    const { nextQuestion, shuffleArray } = this.props;
+    this.setState({
+      right: 'right',
+      wrong: 'wrong',
+      answered: false,
+    }, () => {
+      nextQuestion();
+      shuffleArray();
+    });
   }
 
   render() {
@@ -48,6 +92,11 @@ class AnswerButtons extends Component {
       timer,
       timeOut,
     } = this.props;
+    const {
+      answered,
+      right,
+      wrong,
+    } = this.state;
     return (
       <div>
         <div className="questions">
@@ -71,8 +120,8 @@ class AnswerButtons extends Component {
                 if (answer === correctAnswer) {
                   return (
                     <button
-                      className="right"
-                      id="rigth"
+                      className={ right }
+                      id="right"
                       type="button"
                       data-testid="correct-answer"
                       key={ index }
@@ -86,7 +135,7 @@ class AnswerButtons extends Component {
                 if (answer !== correctAnswer) {
                   return (
                     <button
-                      className="wrong"
+                      className={ wrong }
                       id="wrong"
                       type="button"
                       data-testid={ `wrong-answer-${index - 1}` }
@@ -101,6 +150,15 @@ class AnswerButtons extends Component {
                 return null;
               })
             }
+            {answered && (
+              <button
+                type="button"
+                data-testid="btn-next"
+                onClick={ this.handleNext }
+              >
+                Next
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -70,6 +70,14 @@ class Game extends React.Component {
     interval = setInterval(this.updateTimer, oneSec);
   }
 
+  nextQuestion = () => {
+    const { questionsIndex } = this.state;
+    this.setState({
+      questionsIndex: questionsIndex + 1,
+      timer: 30,
+    });
+  }
+
   render() {
     const {
       questions,
@@ -78,6 +86,7 @@ class Game extends React.Component {
       shuffleAnswers,
       timer,
       timeOut,
+      answered,
     } = this.state;
     return (
       <div>
@@ -94,6 +103,9 @@ class Game extends React.Component {
               questionsIndex={ questionsIndex }
               shuffleAnswers={ shuffleAnswers }
               timer={ timer }
+              answered={ answered }
+              nextQuestion={ this.nextQuestion }
+              shuffleArray={ this.shuffleArray }
             />
           </div>
         )}
