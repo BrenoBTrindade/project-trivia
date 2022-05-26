@@ -1,6 +1,6 @@
 const INITIAL_STATE = {
   name: '',
-  assertions: '',
+  assertions: 0,
   score: 0,
   gravatarEmail: '',
 };
@@ -16,6 +16,12 @@ function player(state = INITIAL_STATE, action) {
     return {
       ...state,
       gravatarEmail: action.payload,
+    };
+  case 'UPDATE_SCORE':
+    return {
+      ...state,
+      assertions: state.assertions + 1,
+      score: action.payload,
     };
   default:
     return state;

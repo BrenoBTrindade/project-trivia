@@ -17,7 +17,7 @@ class Game extends React.Component {
       questionsIndex: 0,
       loading: true,
       shuffleAnswers: [],
-      timer: 5,
+      timer: 30,
       timeOut: false,
     };
   }

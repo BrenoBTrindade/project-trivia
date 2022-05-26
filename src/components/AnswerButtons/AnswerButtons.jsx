@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import './AnswerButtons.css';
+import { connect } from 'react-redux';
 import Timer from '../Timer';
+import './AnswerButtons.css';
+import { updateScore } from '../../redux/actions';
 
 class AnswerButtons extends Component {
   showBorders = () => {
@@ -11,6 +13,31 @@ class AnswerButtons extends Component {
     for (let i = 0; i < wrongButtons.length; i += 1) {
       wrongButtons[i].classList.toggle('red');
     }
+  }
+
+  rigthAnswer = (target) => {
+    const { timer, score, questions, questionsIndex, dispatch } = this.props;
+    const { difficulty } = questions[questionsIndex];
+    const ten = 10;
+
+    const difficultyScore = {
+      easy: 1,
+      medium: 2,
+      hard: 3,
+    };
+
+    if (target.id === 'rigth') {
+      const calcScore = ten + (timer * difficultyScore[difficulty]) + score;
+      console.log(calcScore);
+      dispatch(updateScore(calcScore));
+    } else {
+      return null;
+    }
+  }
+
+  handleClick = ({ target }) => {
+    this.showBorders();
+    this.rigthAnswer(target);
   }
 
   render() {
@@ -45,10 +72,11 @@ class AnswerButtons extends Component {
                   return (
                     <button
                       className="right"
+                      id="rigth"
                       type="button"
                       data-testid="correct-answer"
                       key={ index }
-                      onClick={ this.showBorders }
+                      onClick={ this.handleClick }
                       disabled={ timeOut }
                     >
                       { answer }
@@ -59,10 +87,11 @@ class AnswerButtons extends Component {
                   return (
                     <button
                       className="wrong"
+                      id="wrong"
                       type="button"
                       data-testid={ `wrong-answer-${index - 1}` }
                       key={ index }
-                      onClick={ this.showBorders }
+                      onClick={ this.handleClick }
                       disabled={ timeOut }
                     >
                       { answer }
@@ -85,6 +114,12 @@ AnswerButtons.propTypes = {
   shuffleAnswers: propTypes.instanceOf(Array).isRequired,
   timer: propTypes.number.isRequired,
   timeOut: propTypes.bool.isRequired,
+  score: propTypes.number.isRequired,
+  dispatch: propTypes.func.isRequired,
 };
 
-export default AnswerButtons;
+const mapStateToProps = (state) => ({
+  score: state.player.score,
+});
+
+export default connect(mapStateToProps)(AnswerButtons);
