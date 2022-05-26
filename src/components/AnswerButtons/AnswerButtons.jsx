@@ -19,17 +19,17 @@ class AnswerButtons extends Component {
       shuffleAnswers,
     } = this.props;
     return (
-      <div>
-        <p
+      <div className="questions">
+        <h2
           data-testid="question-category"
         >
           { questions[questionsIndex].category }
-        </p>
-        <p
+        </h2>
+        <h3
           data-testid="question-text"
         >
           { questions[questionsIndex].question }
-        </p>
+        </h3>
         <div data-testid="answer-options">
           {
             shuffleAnswers.map((answer, index) => {
