@@ -6,6 +6,8 @@ import { fetchQuestions } from '../services/api';
 import { savePlayerEmail, savePlayerName } from '../redux/actions';
 import AnswerButtons from '../components/AnswerButtons/AnswerButtons';
 
+let interval;
+
 class Game extends React.Component {
   constructor() {
     super();
@@ -15,7 +17,8 @@ class Game extends React.Component {
       questionsIndex: 0,
       loading: true,
       shuffleAnswers: [],
-      // showAnswers: false,
+      timer: 5,
+      timeOut: false,
     };
   }
 
@@ -28,6 +31,7 @@ class Game extends React.Component {
     });
 
     this.shuffleArray();
+    this.interval();
   }
 
   tokenValidation = () => {
@@ -42,46 +46,60 @@ class Game extends React.Component {
     }
   };
 
-shuffleArray = () => {
-  const { questions, questionsIndex } = this.state;
-  const answers = [questions[questionsIndex].correct_answer,
-    ...questions[questionsIndex].incorrect_answers];
-  const n = 0.5;
-  answers.sort(() => Math.random() - n);
-  this.setState({ shuffleAnswers: answers });
-}
+  shuffleArray = () => {
+    const { questions, questionsIndex } = this.state;
+    const answers = [questions[questionsIndex].correct_answer,
+      ...questions[questionsIndex].incorrect_answers];
+    const n = 0.5;
+    answers.sort(() => Math.random() - n);
+    this.setState({ shuffleAnswers: answers });
+  }
 
-// showBorders = () => {
-//   this.setState({ showAnswers: true });
-// }
+  updateTimer = () => {
+    const { timer } = this.state;
+    this.setState((prevState) => ({ timer: prevState.timer - 1 }), () => {
+      if (timer === 1) {
+        clearInterval(interval);
+        this.setState({ timeOut: true });
+      }
+    });
+  }
 
-render() {
-  const {
-    questions,
-    questionsIndex,
-    loading,
-    shuffleAnswers,
-    // showAnswers,
-  } = this.state;
-  return (
-    <div>
+  interval = () => {
+    const oneSec = 1000;
+    interval = setInterval(this.updateTimer, oneSec);
+  }
+
+  render() {
+    const {
+      questions,
+      questionsIndex,
+      loading,
+      shuffleAnswers,
+      timer,
+      timeOut,
+    } = this.state;
+    return (
       <div>
-        <Header />
+        <div>
+          <Header />
+        </div>
+        <h1>Game</h1>
+        {loading && <h2>Loading...</h2>}
+        {!loading && (
+          <div>
+            <AnswerButtons
+              timeOut={ timeOut }
+              questions={ questions }
+              questionsIndex={ questionsIndex }
+              shuffleAnswers={ shuffleAnswers }
+              timer={ timer }
+            />
+          </div>
+        )}
       </div>
-      <h1>Game</h1>
-      {loading && <h2>Loading...</h2>}
-      {!loading && (
-        <AnswerButtons
-          questions={ questions }
-          questionsIndex={ questionsIndex }
-          shuffleAnswers={ shuffleAnswers }
-          // showAnswers={ showAnswers }
-          // showBorders={ this.showBorders }
-        />
-      )}
-    </div>
-  );
-}
+    );
+  }
 }
 
 Game.propTypes = {
