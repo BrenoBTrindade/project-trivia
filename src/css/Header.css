@@ -1,0 +1,25 @@
+.head {
+  display: flex;
+  justify-content: center;
+}
+
+.head header {
+  background-color: rgb(50, 49, 49);
+  box-shadow: 3px 3px 3px rgb(32, 32, 32);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.score {
+  display: flex;
+  justify-content: space-around;
+  width: 20%;
+}
+
+.picture {
+  height: 50px;
+  margin-right: 20px;
+  margin-top: 5px;
+}

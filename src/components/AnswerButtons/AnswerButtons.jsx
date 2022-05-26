@@ -5,8 +5,8 @@ import './AnswerButtons.css';
 class AnswerButtons extends Component {
   showBorders = () => {
     const wrongButtons = document.getElementsByClassName('wrong');
-    const rigthButton = document.getElementsByClassName('rigth');
-    rigthButton[0].classList.toggle('green');
+    const rightButton = document.getElementsByClassName('right');
+    rightButton[0].classList.toggle('green');
     for (let i = 0; i < wrongButtons.length; i += 1) {
       wrongButtons[i].classList.toggle('red');
     }
@@ -37,7 +37,7 @@ class AnswerButtons extends Component {
               if (answer === correctAnswer) {
                 return (
                   <button
-                    className="rigth"
+                    className="right"
                     type="button"
                     data-testid="correct-answer"
                     key={ index }

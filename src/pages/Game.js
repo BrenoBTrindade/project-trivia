@@ -65,8 +65,10 @@ render() {
   } = this.state;
   return (
     <div>
+      <div>
+        <Header />
+      </div>
       <h1>Game</h1>
-      <Header />
       {loading && <h2>Loading...</h2>}
       {!loading && (
         <AnswerButtons
