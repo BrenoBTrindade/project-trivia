@@ -15,34 +15,12 @@ class AnswerButtons extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     right: 'right',
-  //     wrong: 'wrong',
-  //   });
-  // }
-
   showBorders = () => {
-    // const wrongButtons = document.querySelectorAll('#wrong');
-    // const rightButton = document.querySelector('#right');
-    // rightButton.classList.toggle('green');
-    // for (let i = 0; i < wrongButtons.length; i += 1) {
-    //   wrongButtons[i].classList.toggle('red');
-    // }
     this.setState({
       right: 'green',
       wrong: 'red',
     });
   }
-
-  // hiddenBorders = () => {
-  //   const wrongButtons = document.getElementsByClassName('wrong');
-  //   const rightButton = document.getElementsByClassName('right');
-  //   rightButton[0].classList.remove('green');
-  //   for (let i = 0; i < wrongButtons.length; i += 1) {
-  //     wrongButtons[i].classList.remove('red');
-  //   }
-  // };
 
   rigthAnswer = (target) => {
     const { timer, score, questions, questionsIndex, dispatch } = this.props;
@@ -78,9 +56,9 @@ class AnswerButtons extends Component {
       right: 'right',
       wrong: 'wrong',
       answered: false,
-    }, () => {
-      nextQuestion();
-      shuffleArray();
+    }, async () => {
+      await nextQuestion();
+      await shuffleArray();
     });
   }
 
@@ -174,6 +152,8 @@ AnswerButtons.propTypes = {
   timeOut: propTypes.bool.isRequired,
   score: propTypes.number.isRequired,
   dispatch: propTypes.func.isRequired,
+  nextQuestion: propTypes.func.isRequired,
+  shuffleArray: propTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
