@@ -3,6 +3,7 @@ const INITIAL_STATE = {
   assertions: 0,
   score: 0,
   gravatarEmail: '',
+  correctAnswers: 0,
 };
 
 function player(state = INITIAL_STATE, action) {
@@ -20,8 +21,12 @@ function player(state = INITIAL_STATE, action) {
   case 'UPDATE_SCORE':
     return {
       ...state,
-      assertions: state.assertions + 1,
       score: action.payload,
+    };
+  case 'CORRECT_ANSWERS_QUANTITY':
+    return {
+      ...state,
+      assertions: state.assertions + 1,
     };
   default:
     return state;

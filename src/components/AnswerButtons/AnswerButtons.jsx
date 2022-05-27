@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Timer from '../Timer';
 import './AnswerButtons.css';
-import { updateScore } from '../../redux/actions';
+import { updateScore, getCorrectAnswersQuantity } from '../../redux/actions';
 
 class AnswerButtons extends Component {
   constructor() {
@@ -37,6 +37,7 @@ class AnswerButtons extends Component {
       const calcScore = ten + (timer * difficultyScore[difficulty]) + score;
       console.log(calcScore);
       dispatch(updateScore(calcScore));
+      dispatch(getCorrectAnswersQuantity());
     } else {
       return null;
     }
