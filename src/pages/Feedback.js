@@ -9,6 +9,11 @@ playAgain = () => {
   history.push('/');
 };
 
+goToRanking = () => {
+  const { history } = this.props;
+  history.push('/ranking');
+}
+
 render() {
   const { assertions, score } = this.props;
 
@@ -34,6 +39,12 @@ render() {
         value="Play Again"
         data-testid="btn-play-again"
         onClick={ () => this.playAgain() }
+      />
+      <input
+        type="button"
+        value="Ranking"
+        data-testid="btn-ranking"
+        onClick={ () => this.goToRanking() }
       />
     </div>
   );
