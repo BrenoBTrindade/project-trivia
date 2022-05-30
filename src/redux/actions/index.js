@@ -16,3 +16,7 @@ export const updateScore = (score) => ({
 export const getCorrectAnswersQuantity = () => ({
   type: 'CORRECT_ANSWERS_QUANTITY',
 });
+
+export const clearState = () => ({
+  type: 'CLEAR',
+});

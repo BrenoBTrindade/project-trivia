@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import fetchToken from '../services/api';
 import logo from '../trivia.png';
-import { savePlayerName, savePlayerEmail } from '../redux/actions';
+import { savePlayerName, savePlayerEmail, clearState } from '../redux/actions';
 import '../css/Login.css';
 
 class Login extends React.Component {
@@ -15,6 +15,11 @@ class Login extends React.Component {
       nameInput: '',
       emailInput: '',
     };
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(clearState());
   }
 
   handleClick = async () => {

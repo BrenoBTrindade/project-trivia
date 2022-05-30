@@ -28,6 +28,10 @@ function player(state = INITIAL_STATE, action) {
       ...state,
       assertions: state.assertions + 1,
     };
+  case 'CLEAR':
+    return {
+      ...INITIAL_STATE,
+    };
   default:
     return state;
   }

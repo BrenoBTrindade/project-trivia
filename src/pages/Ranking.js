@@ -31,8 +31,8 @@ class Ranking extends React.Component {
         {rankings.map((e, index) => (
           <div key={ index }>
             <img src={ e.picture } alt="Player avatar" />
-            <span data-testid={ `player-name-${index}` }>{ e.name }</span>
-            <span data-testid={ `player-score-${index}` }>{ e.score }</span>
+            <span data-testid={ `player-name-${index - 1}` }>{ e.name }</span>
+            <span data-testid={ `player-score-${index - 1}` }>{ e.score }</span>
           </div>
         ))}
         <Link to="/">

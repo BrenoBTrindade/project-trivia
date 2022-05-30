@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import md5 from 'crypto-js/md5';
 import propTypes from 'prop-types';
 import Header from '../components/Header';
+import { clearState } from '../redux/actions';
 
 class Feedback extends React.Component {
   constructor() {
@@ -13,7 +14,8 @@ class Feedback extends React.Component {
   }
 
 playAgain = () => {
-  const { history } = this.props;
+  const { history, dispatch } = this.props;
+  dispatch(clearState());
   history.push('/');
 };
 
@@ -91,6 +93,7 @@ Feedback.propTypes = {
   }).isRequired,
   name: propTypes.string.isRequired,
   gravatarEmail: propTypes.string.isRequired,
+  dispatch: propTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Feedback);
