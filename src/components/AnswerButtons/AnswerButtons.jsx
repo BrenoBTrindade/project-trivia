@@ -35,7 +35,6 @@ class AnswerButtons extends Component {
 
     if (target.id === 'right') {
       const calcScore = ten + (timer * difficultyScore[difficulty]) + score;
-      console.log(calcScore);
       dispatch(updateScore(calcScore));
       dispatch(getCorrectAnswersQuantity());
     } else {
