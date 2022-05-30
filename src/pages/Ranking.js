@@ -1,32 +1,34 @@
 import React from 'react';
-import propTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class Ranking extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      rankings: [],
+    };
+  }
+
+  componentDidMount() {
+    const storage = JSON.parse(localStorage.getItem('ranking'));
+    const storeSorted = [...storage.sort((a, b) => b.score - a.score)];
+    this.setState({ rankings: storeSorted });
+  }
+
   hashConverter = (email) => {
     const hash = md5(email).toString();
     return hash;
   };
 
   render() {
-    const { name, score, gravatarEmail } = this.props;
-
-    const ranking = [{
-      name,
-      score,
-      picture: `https://www.gravatar.com/avatar/${this.hashConverter(gravatarEmail)}`,
-    }];
-
-    localStorage.setItem('ranking', JSON.stringify(ranking));
-
-    const rankingElements = JSON.parse(localStorage.getItem('ranking'));
+    const { rankings } = this.state;
 
     return (
       <>
         <h1 data-testid="ranking-title">Ranking</h1>
-        {rankingElements.map((e, index) => (
+        {rankings.map((e, index) => (
           <div key={ index }>
             <img src={ e.picture } alt="Player avatar" />
             <span data-testid={ `player-name-${index}` }>{ e.name }</span>
@@ -46,11 +48,5 @@ const mapStateToProps = (state) => ({
   score: state.player.score,
   gravatarEmail: state.player.gravatarEmail,
 });
-
-Ranking.propTypes = {
-  name: propTypes.string.isRequired,
-  score: propTypes.number.isRequired,
-  gravatarEmail: propTypes.string.isRequired,
-};
 
 export default connect(mapStateToProps)(Ranking);
