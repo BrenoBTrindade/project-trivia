@@ -6,7 +6,7 @@ import Ranking from '../pages/Ranking';
 
 describe('Testa página de Ranking', () => {
   beforeEach(() => {
-    const localStorageItems = [{"name":"amanda","score":0,"picture":"https://www.gravatar.com/avatar/c8d86ad5ed1add319e802f7f659df166"},{"name":"amanda","score":39,"picture":"https://www.gravatar.com/avatar/c8d86ad5ed1add319e802f7f659df166"}]
+    const localStorageItems = [{"name":"amanda","score":0,"picture":"https://www.gravatar.com/avatar/c8d86ad5ed1add319e802f7f659df166"},{"name":"amanda","score":39,"picture":"https://www.gravatar.com/avatar/c8d86ad5ed1add319e802f7f659df166"}];
 
     localStorage.setItem('ranking', JSON.stringify(localStorageItems));
   })

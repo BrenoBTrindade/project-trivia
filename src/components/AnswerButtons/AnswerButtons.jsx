@@ -5,6 +5,8 @@ import Timer from '../Timer';
 import './AnswerButtons.css';
 import { updateScore, getCorrectAnswersQuantity } from '../../redux/actions';
 
+const he = require('he');
+
 class AnswerButtons extends Component {
   constructor() {
     super();
@@ -89,7 +91,7 @@ class AnswerButtons extends Component {
           <h3
             data-testid="question-text"
           >
-            { questions[questionsIndex].question }
+            { he.decode(questions[questionsIndex].question) }
           </h3>
           <div data-testid="answer-options">
             {
@@ -106,7 +108,7 @@ class AnswerButtons extends Component {
                       onClick={ this.handleClick }
                       disabled={ timeOut }
                     >
-                      { answer }
+                      { he.decode(answer) }
                     </button>
                   );
                 }
@@ -121,7 +123,7 @@ class AnswerButtons extends Component {
                       onClick={ this.handleClick }
                       disabled={ timeOut }
                     >
-                      { answer }
+                      { he.decode(answer) }
                     </button>
                   );
                 }
