@@ -4,6 +4,7 @@ import md5 from 'crypto-js/md5';
 import propTypes from 'prop-types';
 import Header from '../components/Header';
 import { clearState } from '../redux/actions';
+import '../css/Feedback.css';
 
 class Feedback extends React.Component {
   constructor() {
@@ -53,27 +54,33 @@ render() {
   };
 
   return (
-    <div>
+    <main>
       <Header />
-      <h1>Feedback</h1>
-      <h2 data-testid="feedback-total-score">{ score }</h2>
-      <p data-testid="feedback-total-question">
-        {assertions}
-      </p>
-      <p data-testid="feedback-text">{ feedbackMessage() }</p>
-      <input
-        type="button"
-        value="Play Again"
-        data-testid="btn-play-again"
-        onClick={ () => this.playAgain() }
-      />
-      <input
-        type="button"
-        value="Ranking"
-        data-testid="btn-ranking"
-        onClick={ () => this.goToRanking() }
-      />
-    </div>
+      <div className="feedback">
+        <h1>Feedback</h1>
+        <div className="feedback-form">
+          <h2 data-testid="feedback-total-score">{ score }</h2>
+          <p data-testid="feedback-total-question">
+            {assertions}
+          </p>
+          <p data-testid="feedback-text">{ feedbackMessage() }</p>
+          <input
+            className="button"
+            type="button"
+            value="Play Again"
+            data-testid="btn-play-again"
+            onClick={ () => this.playAgain() }
+          />
+          <input
+            className="button"
+            type="button"
+            value="Ranking"
+            data-testid="btn-ranking"
+            onClick={ () => this.goToRanking() }
+          />
+        </div>
+      </div>
+    </main>
   );
 }
 }

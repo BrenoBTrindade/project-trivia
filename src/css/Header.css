@@ -19,6 +19,8 @@
 }
 
 .picture {
+  border: solid rgb(176, 176, 176) 1px;
+  border-radius: 3px;
   height: 50px;
   margin-right: 20px;
   margin-top: 5px;

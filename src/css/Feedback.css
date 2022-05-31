@@ -1,0 +1,49 @@
+.feedback {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.feedback h1 {
+  color: white;
+}
+
+.feedback-form {
+  align-items: center;
+  background-color: rgb(232, 235, 238);
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px rgb(59, 59, 59);
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  padding: 100px;
+  width: 200px;
+}
+
+.feedback-form h2 {
+  margin-top: -40px;
+}
+
+.feedback-form .button {
+  background-color: #181a18;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  height: 50px;
+  margin: 4px 2px;
+  padding: 14px 30px;
+  text-align: center;
+  text-decoration: none;
+  transition-duration: 0.4s;
+  width: 150px;
+}
+
+
+.feedback-form .button:hover {
+  background-color: #555;
+  color: white;
+}
