@@ -1,5 +1,4 @@
 import React from 'react';
-import md5 from 'crypto-js/md5';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -17,11 +16,6 @@ class Ranking extends React.Component {
     this.setState({ rankings: storeSorted });
   }
 
-  hashConverter = (email) => {
-    const hash = md5(email).toString();
-    return hash;
-  };
-
   render() {
     const { rankings } = this.state;
 
@@ -31,8 +25,8 @@ class Ranking extends React.Component {
         {rankings.map((e, index) => (
           <div key={ index }>
             <img src={ e.picture } alt="Player avatar" />
-            <span data-testid={ `player-name-${index - 1}` }>{ e.name }</span>
-            <span data-testid={ `player-score-${index - 1}` }>{ e.score }</span>
+            <span data-testid={ `player-name-${index}` }>{ e.name }</span>
+            <span data-testid={ `player-score-${index}` }>{ e.score }</span>
           </div>
         ))}
         <Link to="/">

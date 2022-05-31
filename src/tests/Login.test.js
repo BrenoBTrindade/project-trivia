@@ -5,6 +5,7 @@ import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
 import App from '../App';
 import fetchToken from '../services/api';
 
+
 describe('Testa componente Login', () => {
   it('Verifica se todos os elementos estão renderizados', () => {
     renderWithRouterAndRedux(<App />);
