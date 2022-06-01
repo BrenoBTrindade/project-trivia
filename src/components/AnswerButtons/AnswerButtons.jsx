@@ -39,8 +39,6 @@ class AnswerButtons extends Component {
       const calcScore = ten + (timer * difficultyScore[difficulty]) + score;
       dispatch(updateScore(calcScore));
       dispatch(getCorrectAnswersQuantity());
-    } else {
-      return null;
     }
   }
 
@@ -112,22 +110,19 @@ class AnswerButtons extends Component {
                     </button>
                   );
                 }
-                if (answer !== correctAnswer) {
-                  return (
-                    <button
-                      className={ wrong }
-                      id="wrong"
-                      type="button"
-                      data-testid={ `wrong-answer-${index - 1}` }
-                      key={ index }
-                      onClick={ this.handleClick }
-                      disabled={ timeOut }
-                    >
-                      { he.decode(answer) }
-                    </button>
-                  );
-                }
-                return null;
+                return (
+                  <button
+                    className={ wrong }
+                    id="wrong"
+                    type="button"
+                    data-testid={ `wrong-answer-${index - 1}` }
+                    key={ index }
+                    onClick={ this.handleClick }
+                    disabled={ timeOut }
+                  >
+                    { he.decode(answer) }
+                  </button>
+                );
               })
             }
             {answered && (
