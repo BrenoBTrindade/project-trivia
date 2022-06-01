@@ -7,28 +7,26 @@
   color: #fffffe;
   display: flex;
   flex-direction: column;
-  margin-top: 200px;
+  margin: auto;
+  margin-top: 5%;
   padding: 100px;
   text-transform: uppercase;
   width: 40%;
-  margin: auto;
-  padding: 100px;
-  /* width: 40%; */
 }
 
 .answers {
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   width: 100%;
 }
 
-.answers button {
+.wrong, .right {
   align-items: center;
   background-color: #3da9fc;
-  border-radius: 5px;
   border: none;
+  border-radius: 5px;
   box-shadow: 3px 3px 15px #1e8bdf;
   display: flex;
   font-size: 16px;
@@ -40,7 +38,38 @@
   width: 100%;
 }
 
-.questions button:hover {
+.next {
+  align-items: center;
+  background-color: #3da9fc;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 3px 3px 15px #1e8bdf;
+  display: flex;
+  font-size: 16px;
+  font-weight: 700;
+  justify-content: center;
+  margin-bottom: 15px;
+  padding: 15px;
+  text-align: center;
+  width: 100%;
+}
+
+.next:hover {
+  background-color: #ed627c;
+  border: solid #ef4565 2px;
+  box-shadow: 3px 3px 30px #e60a32;
+  color: white;
+  cursor: pointer;
+}
+
+.right:hover {
+  background-color: #ed627c;
+  border: solid #ef4565 2px;
+  box-shadow: 3px 3px 30px #e60a32;
+  color: white;
+}
+
+.wrong:hover {
   background-color: #ed627c;
   border: solid #ef4565 2px;
   box-shadow: 3px 3px 30px #e60a32;
@@ -48,11 +77,50 @@
 }
 
 .red {
+  align-items: center;
+  background-color: #ef2a2abd;
   border: 3px solid red;
-  color: red;
+  border-radius: 5px;
+  box-shadow: 3px 3px 15px #1e8bdf;
+  color: white;
+  display: flex;
+  font-size: 16px;
+  font-weight: 700;
+  justify-content: center;
+  margin-bottom: 15px;
+  padding: 15px;
+  text-align: center;
+  width: 100%;
 }
 
 .green {
+  align-items: center;
+  background-color: rgba(13, 227, 20, 0.649);
   border: 3px solid rgb(6, 240, 15);
-  color: green;
+  border-radius: 5px;
+  box-shadow: 3px 3px 15px #1e8bdf;
+  color: white;
+  display: flex;
+  font-size: 16px;
+  font-weight: 700;
+  justify-content: center;
+  margin-bottom: 15px;
+  padding: 15px;
+  text-align: center;
+  width: 100%;
+}
+
+.timer {
+  align-items: center;
+  border: solid #ef4565 3px;
+  border-radius: 100%;
+  box-shadow: 3px 3px 30px #e60a32;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  width: 50px;
+}
+
+.game {
+  display: none;
 }

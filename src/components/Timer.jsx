@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
+import './AnswerButtons/AnswerButtons.css';
 
 class Timer extends Component {
   render() {
     const { timer } = this.props;
     return (
-      <span data-testid="timer">{ timer }</span>
+      <h2
+        data-testid="timer"
+        className="timer"
+      >
+        { timer }
+
+      </h2>
     );
   }
 }

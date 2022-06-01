@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import { fetchQuestions } from '../services/api';
 import { savePlayerEmail, savePlayerName } from '../redux/actions';
 import AnswerButtons from '../components/AnswerButtons/AnswerButtons';
+import '../components/AnswerButtons/AnswerButtons.css';
 
 let interval;
 
@@ -98,7 +99,7 @@ class Game extends React.Component {
         <div>
           <Header />
         </div>
-        <h1>Game</h1>
+        <h1 className="game">Game</h1>
         {loading && <h2>Loading...</h2>}
         {!loading && (
           <div>

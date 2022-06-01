@@ -81,16 +81,16 @@ class AnswerButtons extends Component {
           <div>
             <Timer timer={ timer } />
           </div>
-          <h2
+          <h3
             data-testid="question-category"
           >
             { questions[questionsIndex].category }
-          </h2>
-          <h3
+          </h3>
+          <h2
             data-testid="question-text"
           >
             { he.decode(questions[questionsIndex].question) }
-          </h3>
+          </h2>
           <div data-testid="answer-options" className="answers">
             {
               shuffleAnswers.map((answer, index) => {
@@ -127,6 +127,7 @@ class AnswerButtons extends Component {
             }
             {answered && (
               <button
+                className="next"
                 type="button"
                 data-testid="btn-next"
                 onClick={ this.handleNext }
