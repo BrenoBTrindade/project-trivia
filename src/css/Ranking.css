@@ -6,37 +6,45 @@
 
 .ranking h1 {
   color: white;
+  text-transform: uppercase;
 }
 
 .ranking button {
-  background-color: #181a18;
-  border: none;
+  background-color: #3da9fc;
+  border: solid #3295e0 2px;
   border-radius: 5px;
+  box-shadow: 3px 3px 15px #1e8bdf;
   color: white;
   cursor: pointer;
   display: inline-block;
   font-size: 16px;
+  font-weight: 700;
   height: 50px;
   margin: 4px 2px;
   padding: 16px 32px;
   text-align: center;
   text-decoration: none;
+  text-transform: uppercase;
   transition-duration: 0.4s;
   width: 150px;
 }
 
 .ranking button:hover {
-  background-color: rgb(207, 204, 204);
-  color: black;
+  background-color: #ed627c;
+  border: solid #ef4565 2px;
+  box-shadow: 3px 3px 30px #e60a32;
+  color: white;
 }
 
 .ranking-form {
   align-items: center;
-  background-color: rgb(232, 235, 238);
+  background-color: #0b578d;
+  border: solid #ef45cd 3px;
   border-radius: 5px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 3px 3px 15px #e60a32;
+  color: white;
   display: flex;
-  font-size: 13px;
+  font-size: 16px;
   justify-content: space-between;
   margin-bottom: 15px;
   padding: 0 20px;

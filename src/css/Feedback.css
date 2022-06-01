@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 50px;
 }
 
 .feedback h1 {
@@ -11,13 +12,15 @@
 
 .feedback-form {
   align-items: center;
-  background-color: rgb(232, 235, 238);
-  border-radius: 5px;
-  box-shadow: 5px 5px 5px rgb(59, 59, 59);
+  background-color: #0b578d;
+  border: solid #ef45cd 5px;
+  border-radius: 50px;
+  box-shadow: 3px 3px 30px #e60a32;
+  color: #fffffe;
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
   padding: 100px;
+  text-transform: uppercase;
   width: 200px;
 }
 
@@ -26,24 +29,29 @@
 }
 
 .feedback-form .button {
-  background-color: #181a18;
-  border: none;
+  background-color: #3da9fc;
+  border: solid #3295e0 2px;
   border-radius: 5px;
+  box-shadow: 3px 3px 15px #1e8bdf;
   color: white;
   cursor: pointer;
   display: inline-block;
   font-size: 16px;
+  font-weight: 700;
   height: 50px;
   margin: 4px 2px;
-  padding: 14px 30px;
+  padding: 16px 32px;
   text-align: center;
   text-decoration: none;
+  text-transform: uppercase;
   transition-duration: 0.4s;
   width: 150px;
 }
 
 
 .feedback-form .button:hover {
-  background-color: #555;
+  background-color: #ed627c;
+  border: solid #ef4565 2px;
+  box-shadow: 3px 3px 30px #e60a32;
   color: white;
 }

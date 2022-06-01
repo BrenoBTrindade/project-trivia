@@ -4,8 +4,9 @@
 }
 
 .head header {
-  background-color: rgb(50, 49, 49);
-  box-shadow: 3px 3px 3px rgb(32, 32, 32);
+  background-color: #0b578d;
+  border-bottom: solid #1e4bdf 7px;
+  box-shadow: 3px 3px 15px #1e4bdf;
   color: white;
   display: flex;
   justify-content: space-between;
