@@ -1,5 +1,6 @@
 body {
   background-image: url('../imgs/27542.png');
+  /* background-size: cover; */
   box-sizing: border-box;
   font-family: monospace;
   font-size: large;
@@ -33,7 +34,6 @@ body {
   padding: 100px;
   text-transform: uppercase;
   width: 200px;
-
 }
 
 .login h1 {

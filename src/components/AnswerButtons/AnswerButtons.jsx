@@ -91,7 +91,7 @@ class AnswerButtons extends Component {
           >
             { he.decode(questions[questionsIndex].question) }
           </h3>
-          <div data-testid="answer-options">
+          <div data-testid="answer-options" className="answers">
             {
               shuffleAnswers.map((answer, index) => {
                 const correctAnswer = questions[questionsIndex].correct_answer;

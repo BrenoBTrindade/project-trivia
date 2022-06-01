@@ -61,7 +61,7 @@ describe('Testa a página Game com um token válido', () => {
 describe('Testa a página Game com um token inválido', () => {
   beforeEach(() => {
     jest.spyOn(global, 'fetch');
-    global.fetch.mockResolvedValue({ json: jest.fn().mockResolvedValue(invalidTokenMock)})
+    global.fetch.mockResolvedValue({ json: jest.fn().mockResolvedValue(invalidTokenMock)});
   })
 
   it('Testa se o jogador é redirecionado para a página Login se jogar com token inválido', () => {
